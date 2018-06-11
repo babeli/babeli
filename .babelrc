@@ -1,0 +1,25 @@
+{
+    "presets": [
+        [
+            "env",
+            {
+                "modules": false,
+                "targets": {
+                    "node": "current"
+                }
+            }
+        ],
+        "react"
+    ],
+    "plugins": [
+        "transform-export-extensions",
+        "transform-object-rest-spread",
+        "transform-decorators-legacy",
+        [
+            "transform-class-properties",
+            {
+                "spec": true
+            }
+        ]
+    ]
+}
