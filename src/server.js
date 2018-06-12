@@ -3,7 +3,9 @@ import { StaticRouter } from 'react-router-dom';
 import Hapi from 'hapi';
 import Inert from 'inert';
 import { renderToString } from 'react-dom/server';
-import App from './App';
+
+import layout from './layout';
+import App from './client/App';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
@@ -35,22 +37,7 @@ export default async function () {
             if (context.url) {
               return h.redirect(context.url);
             }
-            const template = `
-              <!doctype html>
-              <html lang="">
-              <head>
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                <meta charset="utf-8" />
-                <title>Welcome to Razzle</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                ${assets.client.css ? `<link rel="stylesheet" href="${assets.client.css}">` : ''}
-                ${process.env.NODE_ENV === 'production' ? `<script src="${assets.client.js}" defer></script>` : `<script src="${assets.client.js}" defer crossorigin></script>`}
-              </head>
-              <body>
-                <div id="root">${markup}</div>
-              </body>
-              </html>`;
-            return h.response(template).code(200);
+            return h.response(layout(assets, markup)).code(200);
           } catch (err) {
             console.log(err);
             return null;

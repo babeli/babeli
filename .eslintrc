@@ -18,6 +18,8 @@
         "global-require": 0
     },
     "env": {
-        "browser": true
+        "browser": true,
+        "jasmine": true,
+        "jest": true
     }
 }

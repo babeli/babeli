@@ -1,5 +1,6 @@
 {
     "presets": [
+        "razzle/babel",
         [
             "env",
             {
