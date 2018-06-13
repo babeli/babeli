@@ -4,16 +4,14 @@ import Hapi from 'hapi';
 import Inert from 'inert';
 import { renderToString } from 'react-dom/server';
 
+import logger from './logger';
 import layout from './layout';
 import App from './client/App';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
-const server = new Hapi.Server({
-  port: 4000,
-});
-
-export default async function () {
+export default async function (port) {
+  const server = new Hapi.Server({ port });
   try {
     await server.register(Inert);
     await server.route({
@@ -30,16 +28,16 @@ export default async function () {
       method: 'GET',
       path: '/{path*}',
       options: {
-        async handler(request, h) {
+        async handler(request, handler) {
           try {
             const context = {};
             const markup = renderToString(<StaticRouter context={context} location={request.url}><App /></StaticRouter>);
             if (context.url) {
-              return h.redirect(context.url);
+              return handler.redirect(context.url);
             }
-            return h.response(layout(assets, markup)).code(200);
-          } catch (err) {
-            console.log(err);
+            return handler.response(layout(assets, markup)).code(200);
+          } catch (error) {
+            logger.error(error);
             return null;
           }
         },
@@ -47,7 +45,8 @@ export default async function () {
     });
 
     await server.start();
-  } catch (err) {
-    console.log(err);
+    logger.info(`🤠   Babeli is up and running on port ${port}`);
+  } catch (error) {
+    logger.error(error);
   }
 }

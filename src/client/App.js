@@ -1,7 +1,15 @@
 import React from 'react';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
-import Routes from './routes';
+import Views from './views';
+import theme from './theme';
 
-const App = () => (<Routes/>);
+import './App.css';
+
+const App = () => (
+  <MuiThemeProvider theme={theme}>
+    <Views/>
+  </MuiThemeProvider>
+);
 
 export default App;

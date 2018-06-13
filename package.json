@@ -7,6 +7,8 @@
     "build": "razzle build",
     "clean": "rimraf build",
     "test": "razzle test --env=jsdom",
+    "test:coverage": "razzle test --env=jsdom --coverage --forceExit",
+    "test:update": "razzle test --env=jsdom --updateSnapshot --forceExit",
     "db:migrate": "NODE_ENV=development sequelize db:migrate",
     "start:prod": "NODE_ENV=production node build/server.js"
   },
@@ -33,18 +35,33 @@
     "inert": "^5.1.0",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
-    "razzle": "^2.0.4",
+    "prop-types": "^15.6.1",
+    "razzle": "^2.1.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-router-dom": "^4.3.1",
     "sequelize": "^4.37.10",
     "sequelize-cli": "^4.0.0",
-    "sqlite3": "^4.0.0"
+    "sqlite3": "^4.0.0",
+    "winston": "^3.0.0"
   },
   "devDependencies": {
+    "identity-obj-proxy": "^3.0.0",
+    "react-test-renderer": "^16.4.0",
     "rimraf": "^2.6.2"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/test/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/src/test/__mocks__/styleMock.js"
+    },
+    "setupFiles": [
+      "raf/polyfill",
+      "./src/test/global.js"
+    ],
     "transform": {
       "^.+\\.js$": "babel-jest"
     }

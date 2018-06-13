@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> should render without exploding 1`] = `
+<div
+  className="Login-root-1"
+>
+  <div
+    className="MuiGrid-container-6 MuiGrid-align-items-xs-center-14 MuiGrid-justify-xs-center-23"
+  >
+    <div
+      className="MuiGrid-container-6 MuiGrid-align-items-xs-center-14 MuiGrid-justify-xs-center-23"
+    >
+      <img
+        className="Login-logo-2"
+        src="test-file-stub"
+      />
+    </div>
+    <div
+      className="MuiGrid-item-7"
+    >
+      <div
+        className="MuiPaper-root-97 MuiPaper-elevation2-101 MuiPaper-rounded-98 Login-paper-3"
+      >
+        <div
+          className="MuiFormControl-root-124 MuiFormControl-marginNormal-125 MuiFormControl-fullWidth-127"
+        >
+          <label
+            className="MuiFormLabel-root-133 MuiInputLabel-root-128 MuiInputLabel-formControl-129 MuiInputLabel-animated-132"
+            data-shrink={false}
+            htmlFor="email"
+          >
+            Email
+            <span
+              className="MuiFormLabel-asterisk-137"
+            >
+               *
+            </span>
+          </label>
+          <div
+            className="MuiInput-root-138 MuiInput-formControl-139 MuiInput-underline-142"
+          >
+            <input
+              aria-invalid={false}
+              aria-required={true}
+              autoComplete={undefined}
+              autoFocus={true}
+              className="MuiInput-input-146 MuiInput-inputType-149"
+              defaultValue={undefined}
+              disabled={false}
+              id="email"
+              name={undefined}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={undefined}
+              onKeyUp={undefined}
+              placeholder={undefined}
+              readOnly={undefined}
+              required={true}
+              rows={undefined}
+              type="email"
+              value={undefined}
+            />
+          </div>
+        </div>
+        <div
+          className="MuiFormControl-root-124 MuiFormControl-marginNormal-125 MuiFormControl-fullWidth-127"
+        >
+          <label
+            className="MuiFormLabel-root-133 MuiInputLabel-root-128 MuiInputLabel-formControl-129 MuiInputLabel-animated-132"
+            data-shrink={false}
+            htmlFor="password"
+          >
+            Password
+            <span
+              className="MuiFormLabel-asterisk-137"
+            >
+               *
+            </span>
+          </label>
+          <div
+            className="MuiInput-root-138 MuiInput-formControl-139 MuiInput-underline-142"
+          >
+            <input
+              aria-invalid={false}
+              aria-required={true}
+              autoComplete={undefined}
+              autoFocus={undefined}
+              className="MuiInput-input-146 MuiInput-inputType-149"
+              defaultValue={undefined}
+              disabled={false}
+              id="password"
+              name={undefined}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={undefined}
+              onKeyUp={undefined}
+              placeholder={undefined}
+              readOnly={undefined}
+              required={true}
+              rows={undefined}
+              type="password"
+              value={undefined}
+            />
+          </div>
+        </div>
+        <button
+          className="MuiButtonBase-root-173 MuiButton-root-151 MuiButton-contained-160 MuiButton-containedPrimary-161 MuiButton-raised-163 MuiButton-raisedPrimary-164 MuiButton-sizeLarge-171 MuiButton-fullWidth-172 Login-button-4"
+          disabled={false}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex="0"
+          type="button"
+        >
+          <span
+            className="MuiButton-label-152"
+          >
+            Login
+          </span>
+          <span
+            className="MuiTouchRipple-root-176"
+          />
+        </button>
+      </div>
+      <p
+        className="MuiTypography-root-183 MuiTypography-body1-192 MuiTypography-alignCenter-196 Login-slogan-5"
+      >
+        i18n for lazy developers
+      </p>
+    </div>
+  </div>
+</div>
+`;

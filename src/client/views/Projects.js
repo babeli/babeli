@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-export default class NotFound extends Component {
+export default class Projects extends Component {
   render() {
     return (
-      <h1>Hallo Welt</h1>
+      <h1>Hallo Welt24</h1>
     );
   }
 }
