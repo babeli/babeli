@@ -10,43 +10,51 @@ import App from './client/App';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
-export default async function (port) {
-  const server = new Hapi.Server({ port });
-  try {
-    await server.register(Inert);
-    await server.route({
-      method: 'GET',
-      path: `${process.env.RAZZLE_PUBLIC_DIR}/{file*}`,
-      handler: {
-        directory: {
-          path: process.env.RAZZLE_PUBLIC_DIR,
+class Server {
+  async start(port) {
+    this.hapiServer = new Hapi.Server({ port });
+    try {
+      await this.hapiServer.register(Inert);
+      await this.hapiServer.route({
+        method: 'GET',
+        path: `${process.env.RAZZLE_PUBLIC_DIR}/{file*}`,
+        handler: {
+          directory: {
+            path: process.env.RAZZLE_PUBLIC_DIR,
+          },
         },
-      },
-    });
+      });
 
-    await server.route({
-      method: 'GET',
-      path: '/{path*}',
-      options: {
-        async handler(request, handler) {
-          try {
-            const context = {};
-            const markup = renderToString(<StaticRouter context={context} location={request.url}><App /></StaticRouter>);
-            if (context.url) {
-              return handler.redirect(context.url);
+      await this.hapiServer.route({
+        method: 'GET',
+        path: '/{path*}',
+        options: {
+          async handler(request, handler) {
+            try {
+              const context = {};
+              const markup = renderToString(<StaticRouter context={context} location={request.url}><App /></StaticRouter>);
+              if (context.url) {
+                return handler.redirect(context.url);
+              }
+              return handler.response(layout(assets, markup)).code(200);
+            } catch (error) {
+              logger.error(error);
+              return null;
             }
-            return handler.response(layout(assets, markup)).code(200);
-          } catch (error) {
-            logger.error(error);
-            return null;
-          }
+          },
         },
-      },
-    });
+      });
 
-    await server.start();
-    logger.info(`🤠   Babeli is up and running on port ${port}`);
-  } catch (error) {
-    logger.error(error);
+      await this.hapiServer.start();
+      logger.info(`🤠  Babeli is up and running on port ${port}`);
+    } catch (error) {
+      logger.error(error);
+    }
+  }
+
+  async stop() {
+    return this.hapiServer.stop();
   }
 }
+
+export default Server;

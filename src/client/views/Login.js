@@ -65,7 +65,7 @@ class Login extends Component {
               </FormControl>
               <FormControl margin="normal" fullWidth required>
                 <InputLabel htmlFor="password">Password</InputLabel>
-                <Input id="password" type="password" />
+                <Input id="password" type="password"/>
               </FormControl>
               <Button size="large" variant="raised" color="primary" className={classes.button} fullWidth>Login</Button>
             </Paper>

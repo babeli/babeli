@@ -1,27 +1,21 @@
-import startServer from './server';
+import Server from './server';
+import logger from './logger';
 
-startServer(process.env.PORT || 3000);
-
-// const server = http.createServer(app);
-
-// let currentApp = app;
-
-// server.listen(process.env.PORT || 3000, (error) => {
-//   if (error) {
-//     console.log(error);
-//   }
-
-//   console.log('🚀 started');
-// });
-
-// if (module.hot) {
-//   console.log('✅  Server-side HMR Enabled!');
-
-//   module.hot.accept('./server', () => {
-//     console.log('🔁  HMR Reloading `./server`...');
-//     server.removeListener('request', currentApp);
-//     const newApp = require('./server').default;
-//     server.on('request', newApp);
-//     currentApp = newApp;
-//   });
-// }
+let server = new Server();
+server.start(process.env.PORT || 3000).then(() => {
+  if (module.hot) {
+    logger.info('✅  Server-side HMR Enabled!');
+    module.hot.accept('./server', () => {
+      logger.info('🔁  HMR Reloading `./server`...');
+      server.stop().then(() => {
+        const NewServer = require('./server').default;
+        server = new NewServer();
+        server.start(process.env.PORT || 3000);
+      }).catch((error) => {
+        logger.error(error);
+      });
+    });
+  }
+}).catch((error) => {
+  logger.error(error);
+});
