@@ -11,11 +11,24 @@
     ],
     "rules": {
         "class-methods-use-this": 0,
-        "max-len": [2, 1180],
+        "max-len": [
+            2,
+            1180
+        ],
         "import/prefer-default-export": 0,
         "import/no-dynamic-require": 0,
         "no-console": 0,
-        "global-require": 0
+        "global-require": 0,
+        "no-param-reassign": 0,
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": [
+                    "./src/**/__factories__/*.js*",
+                    "./src/**/__tests__/*.js*"
+                ]
+            }
+        ]
     },
     "env": {
         "browser": true,

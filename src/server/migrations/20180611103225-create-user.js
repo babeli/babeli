@@ -14,6 +14,16 @@ const migration = {
       type: Sequelize.STRING,
     },
     email: {
+      allowNull: false,
+      type: Sequelize.STRING,
+      unique: true,
+    },
+    apiKey: {
+      allowNull: false,
+      type: Sequelize.STRING,
+      unique: true,
+    },
+    encryptedPassword: {
       type: Sequelize.STRING,
     },
     createdAt: {

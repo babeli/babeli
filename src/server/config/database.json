@@ -1,9 +1,19 @@
 {
   "development": {
-    "dialect": "sqlite"
+    "dialect": "postgres",
+    "host": "127.0.0.1",
+    "port": "5433",
+    "username": "babeli",
+    "password": "babeli",
+    "database": "development"
   },
   "test": {
-    "dialect": "sqlite"
+    "dialect": "postgres",
+    "host": "127.0.0.1",
+    "port": "5433",
+    "username": "babeli",
+    "password": "babeli",
+    "database": "test"
   },
   "production": {
     "username": "root",

@@ -22,4 +22,10 @@ require('babel-core/register')({
     ],
   ],
 });
-module.exports = require('./database.json');
+
+const config = require('./database.json');
+
+const env = process.env.NODE_ENV || 'development';
+config[env].operatorsAliases = require('sequelize').Sequelize.Op;
+
+module.exports = config;
