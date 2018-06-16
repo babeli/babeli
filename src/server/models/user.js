@@ -71,5 +71,13 @@ export default function (sequelize, DataTypes) {
     });
   });
 
+  User.prototype.toSessionJson = function () {
+    return {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+    };
+  };
+
   return User;
 }
